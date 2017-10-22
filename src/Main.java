@@ -16,6 +16,8 @@ public class Main extends Application {
         VBox mainVBox = (VBox) FXMLLoader.load(Main.class.getResource("UniFundMe.fxml"));
         primaryStage.setScene(new Scene(mainVBox));
         primaryStage.show();
+
+
     }
 
 

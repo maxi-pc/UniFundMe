@@ -11,6 +11,7 @@ public class MyController {
     @FXML
     private SplitMenuButton tf_btnSearch;
 
+
     @FXML
     private ComboBox<?> tf_province;
 
@@ -48,8 +49,24 @@ public class MyController {
     private CustomTextField tf_txtFieldGPA;
 
     @FXML
-    void onSubmitClick(ActionEvent event) {
+    void onDefault(ActionEvent event) {
+
     	System.out.println("MySQL Query for displaying ALL awards");
+    }
+    @FXML
+    void onScholar(ActionEvent event) {
+
+        System.out.println("MySQL Query for only Scholarships");
+    }
+    @FXML
+    void onGrants(ActionEvent event) {
+
+        System.out.println("MySQL Query for only Grants");
+    }
+    @FXML
+    void onBrusaries(ActionEvent event) {
+
+        System.out.println("MySQL Query for only Brusaries");
     }
 
 }

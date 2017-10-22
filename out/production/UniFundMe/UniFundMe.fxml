@@ -58,11 +58,11 @@
                   </Menu>
                </menus>
             </MenuBar>
-            <SplitMenuButton fx:id="tf_btnSearch" layoutX="228.0" layoutY="392.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Search For All">
+            <SplitMenuButton fx:id="tf_btnSearch" layoutX="228.0" layoutY="392.0" mnemonicParsing="false" onAction="#onDefault" text="Search For All">
               <items>
-                <MenuItem mnemonicParsing="false" text="Scholarships" />
-                  <MenuItem mnemonicParsing="false" text="Grants" />
-                  <MenuItem mnemonicParsing="false" text="Bursaries" />
+                <MenuItem mnemonicParsing="false" text="Scholarships" onAction="#onScholar" />
+                  <MenuItem mnemonicParsing="false" text="Grants" onAction="#onGrants" />
+                  <MenuItem mnemonicParsing="false" text="Bursaries" onAction="#onBrusaries" />
               </items>
             </SplitMenuButton>
             <Pane layoutX="145.0" layoutY="60.0" prefHeight="310.0" prefWidth="314.0">
