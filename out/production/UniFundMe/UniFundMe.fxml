@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyController">
+   <children>
+      <AnchorPane prefHeight="447.0" prefWidth="600.0">
+         <children>
+            <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="New" />
+                        <MenuItem mnemonicParsing="false" text="Open…" />
+                        <Menu mnemonicParsing="false" text="Open Recent" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save As…" />
+                        <MenuItem mnemonicParsing="false" text="Revert" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Quit" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="Copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Select All" />
+                        <MenuItem mnemonicParsing="false" text="Unselect All" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <SplitMenuButton fx:id="tf_btnSearch" layoutX="228.0" layoutY="392.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Search For All">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Scholarships" />
+                  <MenuItem mnemonicParsing="false" text="Grants" />
+                  <MenuItem mnemonicParsing="false" text="Bursaries" />
+              </items>
+            </SplitMenuButton>
+            <Pane layoutX="145.0" layoutY="60.0" prefHeight="310.0" prefWidth="314.0">
+               <children>
+                  <ComboBox fx:id="tf_province" layoutX="23.0" layoutY="16.0" prefHeight="21.0" prefWidth="267.0" promptText="Select Province" />
+                  <ComboBox fx:id="tf_school" layoutX="23.0" layoutY="76.0" prefHeight="21.0" prefWidth="267.0" promptText="Select School" />
+                  <Group layoutX="24.0" layoutY="130.0">
+                     <children>
+                        <RadioButton fx:id="tf_RdFull" mnemonicParsing="false" prefHeight="17.0" prefWidth="257.0" text="Full-Time Studies">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="studies" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="tf_RdPart" layoutX="142.0" layoutY="1.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="142.0" text="Part-Time Studies" toggleGroup="$studies" />
+                     </children>
+                  </Group>
+                  <Group layoutX="24.0" layoutY="166.0">
+                     <children>
+                        <RadioButton fx:id="tf_RdDomestic" mnemonicParsing="false" prefHeight="17.0" prefWidth="257.0" text="Domestic Student">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="student" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="tf_RdInternational" layoutX="142.0" layoutY="1.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="142.0" text="International Student" toggleGroup="$student" />
+                     </children>
+                  </Group>
+                  <Text layoutX="24.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you identify yourself as an Aboriginal Person?" />
+                  <Group layoutX="24.0" layoutY="225.0">
+                     <children>
+                        <RadioButton fx:id="tf_RdYesAbo" mnemonicParsing="false" prefHeight="17.0" prefWidth="99.0" text="Yes">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="aboriginal" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="tf_RdNoAbo" layoutX="49.0" layoutY="1.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="49.0" text="No" toggleGroup="$aboriginal" />
+                     </children>
+                  </Group>
+                  <CustomTextField fx:id="tf_txtFieldGPA" layoutX="24.0" layoutY="264.0" prefHeight="25.0" prefWidth="78.0" text="Input GPA" />
+               </children>
+            </Pane>
+            <Text layoutX="170.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Input:" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
