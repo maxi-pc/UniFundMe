@@ -1,6 +1,8 @@
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.text.NumberFormat;
+
 /**
  * Created by Maxi on 10/22/2017.
  * this is the class that manages awards taken from the database using contructors, setters, getters, etc...

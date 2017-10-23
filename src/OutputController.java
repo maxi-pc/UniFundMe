@@ -11,13 +11,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import javax.script.Bindings;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import java.text.NumberFormat;
 
 
 public class OutputController  implements Initializable {
@@ -117,16 +121,20 @@ public class OutputController  implements Initializable {
             System.err.println("Error"+ex);
         }
 
+        // just tiny bit of code to count the size of the created tableview (results) and set it to a label.
         int total = data.size();
         txtLabelTotal.setText(Integer.toString(total));
 
         //set cell value factory to tableview
-        //NB.PRopertyValue Factory must be the same with the one set in model class.
+        //NB.PRopertyValue Factory must be the same with the one set in AwardList class.
 
         colSource.setCellValueFactory(new PropertyValueFactory<>("source"));
         colType.setCellValueFactory(new PropertyValueFactory<>("type"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+        //.setCellFactory(new ColumnFormatter<Levels, Double>(new DecimalFormat("0.0dB")));
+
 
         outputTable.setItems(null);
         outputTable.setItems(data);
