@@ -36,10 +36,15 @@
       </MenuBar>
       <AnchorPane fx:id="paneOutput" prefHeight="447.0" prefWidth="600.0">
          <children>
-            <Text layoutX="202.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Awards found:" />
-            <Text fx:id="txtLabelTotal" layoutX="314.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text layoutX="202.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Awards found for:" />
+            <Text fx:id="txtLabelTotal" layoutX="285.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtLabelSchool" layoutX="329.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Text>
             <Pane layoutY="152.0" prefHeight="295.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">

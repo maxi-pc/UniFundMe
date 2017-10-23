@@ -31,7 +31,11 @@ public class OutputController  implements Initializable {
         // check search type
         System.out.println("Debug: Result window/scene done");
         dc = new DbConnection();
-        loadDataFromDB();
+
+        MainController cont=Context.getInstance().getTabRough();
+        String school = cont.tf_school.getValue();
+        loadDataFromDB(school);
+
     }
 
     private Connection con = null;
@@ -43,6 +47,9 @@ public class OutputController  implements Initializable {
 
     @FXML
     private Text txtLabelTotal;
+
+    @FXML
+    private Text txtLabelSchool;
 
     @FXML
     private TableView<AwardList> outputTable;
@@ -100,46 +107,93 @@ public class OutputController  implements Initializable {
 
     @FXML
     void onWiki(ActionEvent event) {
-
+    //    CustomControl c = new CustomControl();
+     //   c.getCustomId();
+    //    System.out.println(c);
     }
 
     @FXML
-    private void loadDataFromDB() {
+    public void loadDataFromDB(String school) {
+        String schoolVal = school;
         Connection conn = dc.Connect();
         data = FXCollections.observableArrayList();
 
-        // execute query and store results in a resultset
-        try {
-            ResultSet rs = conn.createStatement().executeQuery("SELECT award_source, award_type, award_name, award_amount FROM awards");
+        if (schoolVal == "Select All Schools") {
+            schoolVal = "All Schools";
 
-            while(rs.next()) {
-              data.add(new AwardList(rs.getString("award_source"),rs.getString("award_type"), rs.getString("award_name"), rs.getString("award_amount")));
+            try {
+                PreparedStatement sql = conn.prepareStatement("SELECT award_source, award_type, award_name, award_amount FROM awards");
+                ResultSet rs = sql.executeQuery();
+                while (rs.next()) {
+                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("award_name"), rs.getString("award_amount")));
+                }
+
+
+            } catch (SQLException ex) {
+                System.err.println("Error" + ex);
             }
 
+            // just tiny bit of code to count the size of the created tableview (results) and set it to a label.
+            int total = data.size();
+            txtLabelTotal.setText(Integer.toString(total));
+            txtLabelSchool.setText(schoolVal);
 
-        } catch (SQLException ex) {
-            System.err.println("Error"+ex);
+            //set cell value factory to tableview
+            //NB.PRopertyValue Factory must be the same with the one set in AwardList class.
+
+            colSource.setCellValueFactory(new PropertyValueFactory<>("source"));
+            colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+            colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+            //.setCellFactory(new ColumnFormatter<Levels, Double>(new DecimalFormat("0.0dB")));
+
+
+            outputTable.setItems(null);
+            outputTable.setItems(data);
+
+            System.out.println("Debug: Loading from database successful");
+
+        } else {
+
+            // execute query and store results in a resultset
+            try {
+                // ResultSet rs = conn.createStatement().executeQuery("SELECT award_source, award_type, award_name, award_amount FROM awards");
+                //  ResultSet rs = conn.createStatement().executeQuery("SELECT award_source, award_type, award_name, award_amount FROM awards INNER JOIN schools AS S ON awards.award_school_id = S.school_id WHERE S.school_name LIKE \"%schoolVal%\"");
+                PreparedStatement sql = conn.prepareStatement("SELECT award_source, award_type, award_name, award_amount FROM awards INNER JOIN schools AS S ON awards.award_school_id = S.school_id WHERE S.school_name LIKE ?");
+                sql.setString(1, "%" + schoolVal + "%");
+                ResultSet rs = sql.executeQuery();
+                while (rs.next()) {
+                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("award_name"), rs.getString("award_amount")));
+                }
+
+
+            } catch (SQLException ex) {
+                System.err.println("Error" + ex);
+            }
+
+            // just tiny bit of code to count the size of the created tableview (results) and set it to a label.
+            int total = data.size();
+            txtLabelTotal.setText(Integer.toString(total));
+            txtLabelSchool.setText(schoolVal);
+
+            //set cell value factory to tableview
+            //NB.PRopertyValue Factory must be the same with the one set in AwardList class.
+
+            colSource.setCellValueFactory(new PropertyValueFactory<>("source"));
+            colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+            colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+            //.setCellFactory(new ColumnFormatter<Levels, Double>(new DecimalFormat("0.0dB")));
+
+
+            outputTable.setItems(null);
+            outputTable.setItems(data);
+
+            System.out.println("Debug: Loading from database successful");
+
         }
-
-        // just tiny bit of code to count the size of the created tableview (results) and set it to a label.
-        int total = data.size();
-        txtLabelTotal.setText(Integer.toString(total));
-
-        //set cell value factory to tableview
-        //NB.PRopertyValue Factory must be the same with the one set in AwardList class.
-
-        colSource.setCellValueFactory(new PropertyValueFactory<>("source"));
-        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-
-        //.setCellFactory(new ColumnFormatter<Levels, Double>(new DecimalFormat("0.0dB")));
-
-
-        outputTable.setItems(null);
-        outputTable.setItems(data);
-
-        System.out.println("Debug: Loading from database successful");
-
     }
+
 }

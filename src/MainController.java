@@ -17,12 +17,14 @@ public class MainController implements Initializable {
     // method to initialize required arrays like the provinces drop-down menu.
     public void initialize(URL location, ResourceBundle resources) {
         tf_province.setItems(list);
+        Context.getInstance().setTabRough(this);
     }
 
 
     // main controller objects
     @FXML
     private VBox VBoxMain;
+
     @FXML
     private SplitMenuButton tf_btnSearch;
 
@@ -43,9 +45,13 @@ public class MainController implements Initializable {
             "Select All Provinces"
     );
 
+    public void setSchool(String school){
+     //   this.tf_school.getValue() = school;
+    }
+
 
     @FXML
-    private ComboBox<String> tf_school;
+    public ComboBox<String> tf_school;
 
     @FXML
     private RadioButton tf_RdFull;
@@ -125,7 +131,6 @@ public class MainController implements Initializable {
 
     @FXML
     void onSettings(ActionEvent event) {
-
     }
 
     @FXML
