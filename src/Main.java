@@ -3,6 +3,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.util.List;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Main extends Application {
 
@@ -16,9 +20,10 @@ public class Main extends Application {
         VBox mainVBox = (VBox) FXMLLoader.load(Main.class.getResource("UniFundMe.fxml"));
         primaryStage.setScene(new Scene(mainVBox));
         primaryStage.show();
-
-
     }
+
+
+
 
 
 }

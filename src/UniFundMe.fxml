@@ -15,59 +15,39 @@
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyController">
+<VBox fx:id="VBoxMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <children>
-      <AnchorPane prefHeight="447.0" prefWidth="600.0">
+      <MenuBar prefHeight="25.0" prefWidth="600.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem fx:id="menuPreferences" mnemonicParsing="false" onAction="#onSettings" text="Preferences…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="menuQuit" mnemonicParsing="false" onAction="#onQuit" text="Quit" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuPrint" mnemonicParsing="false" onAction="#onPrint" text="Print" />
+            <Menu fx:id="menuHelp" mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem fx:id="menuDocumentation" mnemonicParsing="false" onAction="#onDocumentation" text="Documentation" />
+                  <MenuItem fx:id="menuWiki" mnemonicParsing="false" onAction="#onWiki" text="Wiki" />
+                  <MenuItem fx:id="menuGithub" mnemonicParsing="false" onAction="#onGithub" text="Github" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane fx:id="mainPage" prefHeight="447.0" prefWidth="600.0">
          <children>
-            <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
-               <menus>
-                  <Menu mnemonicParsing="false" text="File">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="New" />
-                        <MenuItem mnemonicParsing="false" text="Open…" />
-                        <Menu mnemonicParsing="false" text="Open Recent" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Save As…" />
-                        <MenuItem mnemonicParsing="false" text="Revert" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Preferences…" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Quit" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Edit">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Undo" />
-                        <MenuItem mnemonicParsing="false" text="Redo" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Cut" />
-                        <MenuItem mnemonicParsing="false" text="Copy" />
-                        <MenuItem mnemonicParsing="false" text="Paste" />
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Select All" />
-                        <MenuItem mnemonicParsing="false" text="Unselect All" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
             <SplitMenuButton fx:id="tf_btnSearch" layoutX="228.0" layoutY="392.0" mnemonicParsing="false" onAction="#onDefault" text="Search For All">
               <items>
-                <MenuItem mnemonicParsing="false" text="Scholarships" onAction="#onScholar" />
-                  <MenuItem mnemonicParsing="false" text="Grants" onAction="#onGrants" />
-                  <MenuItem mnemonicParsing="false" text="Bursaries" onAction="#onBrusaries" />
+                <MenuItem mnemonicParsing="false" onAction="#onScholar" text="Scholarships" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGrants" text="Grants" />
+                  <MenuItem mnemonicParsing="false" onAction="#onBrusaries" text="Bursaries" />
               </items>
             </SplitMenuButton>
             <Pane layoutX="145.0" layoutY="60.0" prefHeight="310.0" prefWidth="314.0">
                <children>
-                  <ComboBox fx:id="tf_province" layoutX="23.0" layoutY="16.0" prefHeight="21.0" prefWidth="267.0" promptText="Select Province" />
+                  <ComboBox fx:id="tf_province" layoutX="23.0" layoutY="16.0" onAction="#checkProvince" prefHeight="21.0" prefWidth="267.0" promptText="Select Province" />
                   <ComboBox fx:id="tf_school" layoutX="23.0" layoutY="76.0" prefHeight="21.0" prefWidth="267.0" promptText="Select School" />
                   <Group layoutX="24.0" layoutY="130.0">
                      <children>
