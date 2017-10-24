@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added dbconnection, awards class, successfully displaying db awards.">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Context.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniFundMe/UniFundMe.fxml" afterPath="$PROJECT_DIR$/out/production/UniFundMe/UniFundMe.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MainController.java" afterPath="$PROJECT_DIR$/src/MainController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OutputController.java" afterPath="$PROJECT_DIR$/src/OutputController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UniFundMeResults.fxml" afterPath="$PROJECT_DIR$/src/UniFundMeResults.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,20 +37,6 @@
       </PATH_ELEMENT>
       <PATH_ELEMENT>
         <option name="myItemId" value="UniFundMeDB@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="UniFundMeDB@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="unifundmedb" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
@@ -118,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-208">
-              <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="87" column="58" lean-forward="false" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -147,19 +137,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OutputController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OutputController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/OutputController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="166" column="70" lean-forward="false" selection-start-line="166" selection-start-column="56" selection-end-line="166" selection-end-column="70" />
+            <state relative-caret-position="220">
+              <caret line="76" column="59" lean-forward="true" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1508820807443" expanded="true" signature="3025:3094" ph="SELECT award... awards" />
-                <marker date="1508820807443" expanded="true" signature="4614:4683" ph="SELECT award... awards" />
-                <marker date="1508820807443" expanded="true" signature="4759:4932" ph="SELECT award... awards" />
-                <marker date="1508820807443" expanded="true" signature="4759:4933" ph="SELECT award... awards" />
-                <marker date="1508820807443" expanded="true" signature="4759:4935" ph="SELECT award... awards" />
-                <marker date="1508820807443" expanded="true" signature="5000:5160" ph="SELECT award... awards" />
+                <marker date="1508793414469" expanded="true" signature="3025:3094" ph="SELECT award... awards" />
+                <marker date="1508793414469" expanded="true" signature="4614:4683" ph="SELECT award... awards" />
+                <marker date="1508793414469" expanded="true" signature="4759:4932" ph="SELECT award... awards" />
+                <marker date="1508793414469" expanded="true" signature="4759:4933" ph="SELECT award... awards" />
+                <marker date="1508793414469" expanded="true" signature="4759:4935" ph="SELECT award... awards" />
+                <marker date="1508793414469" expanded="true" signature="5000:5160" ph="SELECT award... awards" />
               </folding>
             </state>
           </provider>
@@ -204,7 +194,7 @@
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bdaf7cc4-befc-4398-bb65-630f68819074/console.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="46" lean-forward="true" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
+              <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="178" />
               <folding />
             </state>
           </provider>
@@ -232,7 +222,6 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="m" />
         <option value="maximilious &lt;32994895+maximilious@users.noreply.github.com&gt;" />
       </list>
     </option>
@@ -266,8 +255,8 @@
         <option value="$PROJECT_DIR$/src/CustomControl.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/bdaf7cc4-befc-4398-bb65-630f68819074/console.sql" />
         <option value="$PROJECT_DIR$/src/Context.java" />
-        <option value="$PROJECT_DIR$/src/MainController.java" />
         <option value="$PROJECT_DIR$/src/OutputController.java" />
+        <option value="$PROJECT_DIR$/src/MainController.java" />
       </list>
     </option>
   </component>
@@ -819,7 +808,7 @@
       <workItem from="1508657005844" duration="2139000" />
       <workItem from="1508659290534" duration="6988000" />
       <workItem from="1508706444130" duration="31297000" />
-      <workItem from="1508771748120" duration="17417000" />
+      <workItem from="1508771748120" duration="11930000" />
     </task>
     <task id="LOCAL-00001" summary="No big deal">
       <created>1508716905470</created>
@@ -842,18 +831,11 @@
       <option name="project" value="LOCAL" />
       <updated>1508772410450</updated>
     </task>
-    <task id="LOCAL-00004" summary="added dbconnection, awards class, successfully displaying db awards.">
-      <created>1508793623246</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1508793623246</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66670000" />
+    <option name="totallyTimeSpent" value="61183000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1037,12 +1019,12 @@
           <caret line="133" column="74" lean-forward="false" selection-start-line="133" selection-start-column="74" selection-end-line="133" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1508820807443" expanded="true" signature="3025:3094" ph="SELECT award... awards" />
-            <marker date="1508820807443" expanded="true" signature="4614:4683" ph="SELECT award... awards" />
-            <marker date="1508820807443" expanded="true" signature="4759:4932" ph="SELECT award... awards" />
-            <marker date="1508820807443" expanded="true" signature="4759:4933" ph="SELECT award... awards" />
-            <marker date="1508820807443" expanded="true" signature="4759:4935" ph="SELECT award... awards" />
-            <marker date="1508820807443" expanded="true" signature="5000:5160" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="3025:3094" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="4614:4683" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="4759:4932" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="4759:4933" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="4759:4935" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="5000:5160" ph="SELECT award... awards" />
           </folding>
         </state>
       </provider>
@@ -1298,6 +1280,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bdaf7cc4-befc-4398-bb65-630f68819074/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="178" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/UniFundMeResults.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
@@ -1311,36 +1301,28 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainController.java">
+    <entry file="file://$PROJECT_DIR$/src/OutputController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-208">
-          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        <state relative-caret-position="220">
+          <caret line="76" column="59" lean-forward="true" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1508793414469" expanded="true" signature="3025:3094" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="4614:4683" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="4759:4932" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="4759:4933" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="4759:4935" ph="SELECT award... awards" />
+            <marker date="1508793414469" expanded="true" signature="5000:5160" ph="SELECT award... awards" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bdaf7cc4-befc-4398-bb65-630f68819074/console.sql">
+    <entry file="file://$PROJECT_DIR$/src/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="46" lean-forward="true" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OutputController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="166" column="70" lean-forward="false" selection-start-line="166" selection-start-column="56" selection-end-line="166" selection-end-column="70" />
+        <state relative-caret-position="255">
+          <caret line="87" column="58" lean-forward="false" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1508820807443" expanded="true" signature="3025:3094" ph="SELECT award... awards" />
-            <marker date="1508820807443" expanded="true" signature="4614:4683" ph="SELECT award... awards" />
-            <marker date="1508820807443" expanded="true" signature="4759:4932" ph="SELECT award... awards" />
-            <marker date="1508820807443" expanded="true" signature="4759:4933" ph="SELECT award... awards" />
-            <marker date="1508820807443" expanded="true" signature="4759:4935" ph="SELECT award... awards" />
-            <marker date="1508820807443" expanded="true" signature="5000:5160" ph="SELECT award... awards" />
           </folding>
         </state>
       </provider>
