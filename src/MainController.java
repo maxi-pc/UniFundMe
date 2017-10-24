@@ -74,6 +74,8 @@ public class MainController implements Initializable {
     @FXML
     private RadioButton tf_RdYesAbo;
 
+
+
     @FXML
     private ToggleGroup aboriginal;
 
