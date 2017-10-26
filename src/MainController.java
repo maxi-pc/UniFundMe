@@ -119,9 +119,16 @@ public class MainController implements Initializable {
 
     }
 
+    //Load the GitHub web address in external web browser
     @FXML
     void onGithub(ActionEvent event) {
-
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI("https://github.com/maximilious/UniFundMe"));
+            }
+        } catch (Exception ex){
+            System.out.println("Failed to open GitHub link.");
+        }
     }
 
     @FXML
@@ -129,6 +136,7 @@ public class MainController implements Initializable {
 
     }
 
+    //Quit the application
     @FXML
     void onQuit(ActionEvent event) {
         System.exit(0);
@@ -146,7 +154,7 @@ public class MainController implements Initializable {
                 Desktop.getDesktop().browse(new URI("http://dereksmart.com/2016/06/star-citizen-fidelity-of-failure/"));
             }
         } catch (Exception ex){
-            System.out.println("Failed to open wiki");
+            System.out.println("Failed to open wiki.");
         }
     }
 
