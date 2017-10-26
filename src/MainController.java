@@ -146,7 +146,7 @@ public class MainController implements Initializable {
                 Desktop.getDesktop().browse(new URI("http://dereksmart.com/2016/06/star-citizen-fidelity-of-failure/"));
             }
         } catch (Exception ex){
-
+            System.out.println("Failed to open wiki");
         }
     }
 
