@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import java.awt.Desktop;
+import java.net.URI;
+
 
 public class MainController implements Initializable {
 
@@ -135,9 +138,16 @@ public class MainController implements Initializable {
     void onSettings(ActionEvent event) {
     }
 
+    //Handling external resource for wiki information
     @FXML
     void onWiki(ActionEvent event) {
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI("http://dereksmart.com/2016/06/star-citizen-fidelity-of-failure/"));
+            }
+        } catch (Exception ex){
 
+        }
     }
 
     @FXML
