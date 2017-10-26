@@ -13,9 +13,9 @@ public class DbConnection {
 
     public Connection Connect(){
         try {
-        String url="jdbc:mysql://localhost:3306/UniFundMeDB";
-        String user="root";
-        String password="";
+            String url="jdbc:mysql://158.69.54.97:3306/maxpme_UniFundMe";
+            String user="maxpme_root";
+            String password="csis2017";
 
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn= DriverManager.getConnection(url, user, password);

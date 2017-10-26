@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="UniFundMeDB@localhost" uuid="bdaf7cc4-befc-4398-bb65-630f68819074">
+    <data-source source="LOCAL" name="maxpme_UniFundMe@158.69.54.97" uuid="de73e49e-9b5a-4763-a7e2-d783c9a26d15">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/UniFundMeDB</jdbc-url>
+      <jdbc-url>jdbc:mysql://158.69.54.97:3306/maxpme_UniFundMe</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
