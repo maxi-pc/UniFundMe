@@ -1,3 +1,4 @@
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,8 @@ import java.util.ResourceBundle;
 
 import java.awt.Desktop;
 import java.net.URI;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class MainController implements Initializable {
@@ -21,15 +24,18 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         tf_province.setItems(list);
         Context.getInstance().setTabRough(this);
+      //  tf_txtFieldGPA.max
     }
 
+    @FXML
+    public String searchType="";
 
     // main controller objects
     @FXML
     private VBox VBoxMain;
 
     @FXML
-    private SplitMenuButton tf_btnSearch;
+    public SplitMenuButton tf_btnSearch;
 
     @FXML
     public  ComboBox<String> tf_province;
@@ -57,25 +63,25 @@ public class MainController implements Initializable {
     public ComboBox<String> tf_school;
 
     @FXML
-    private RadioButton tf_RdFull;
+    public RadioButton tf_RdFull;
 
     @FXML
     private ToggleGroup studies;
 
     @FXML
-    private RadioButton tf_RdPart;
+    public RadioButton tf_RdPart;
 
     @FXML
-    private RadioButton tf_RdDomestic;
+    public RadioButton tf_RdDomestic;
 
     @FXML
     private ToggleGroup student;
 
     @FXML
-    private RadioButton tf_RdInternational;
+    public RadioButton tf_RdInternational;
 
     @FXML
-    private RadioButton tf_RdYesAbo;
+    public RadioButton tf_RdYesAbo;
 
 
 
@@ -83,35 +89,141 @@ public class MainController implements Initializable {
     private ToggleGroup aboriginal;
 
     @FXML
-    private RadioButton tf_RdNoAbo;
+    public RadioButton tf_RdNoAbo;
 
     @FXML
-    private TextField tf_txtFieldGPA;
+    public TextField tf_txtFieldGPA;
+
+    @FXML
+    public String study, locality, aboriginality;
+
+    @FXML
+    void validationCheck()throws IOException {
+
+        String one, two, three, four, five, six, seven ="", eight ="", nine = "", error;
+        boolean numeric = true, gpaformat = true, gpagreater = true;
+        String gpa = tf_txtFieldGPA.getText();
+
+        Pattern pattern = Pattern.compile("^\\d+\\.\\d{2}$");
+        Matcher matcher = pattern.matcher(gpa);
+
+        if (studies.getSelectedToggle() == null) {
+            one = "Studies Check\n";
+        } else {
+            one = "";
+        }
+        if (student.getSelectedToggle() == null) {
+             two = "Domestic Check\n";
+        } else {
+             two = "";
+        }
+        if (aboriginal.getSelectedToggle() == null) {
+             three = "Aboriginal Check\n";
+        } else {
+             three = "";
+        }
+        if (tf_province.getValue() == null) {
+             four = "Province Check\n";
+        } else {
+             four = "";
+        }
+        if (tf_school.getValue() == null) {
+             five = "School Check\n";
+        } else {
+             five = "";
+        }
+        if (gpa.trim().isEmpty()) {
+             six = "GPA Check\n";
+        } else {
+             six = "";
+        }
+        if (!gpa.trim().isEmpty()) {
+            seven = "";
+            eight = "";
+
+           try {
+               Double.valueOf(gpa);
+            } catch(Exception e) {
+               seven = "Non-Numeric GPA\n";
+               numeric = false;
+            }
+
+            if (numeric == true) {
+                if (matcher.matches()) {
+                   Double gpanum = Double.valueOf(gpa);
+                    if (gpanum > 4.33) {
+                        nine = "GPA cannot exceed 4.33\n";
+                        gpagreater = false;
+                    }
+                    else if(gpanum <= 1.00) {
+                        nine = "Please consider dropping out of school\n";
+                        gpagreater = false;
+                    }
+                } else {
+                    eight = "Invalid GPA format (0.00)\n";
+                    gpaformat = false;
+                }
+
+
+            }
+
+        }
+
+        System.out.println(tf_txtFieldGPA.getText().toString());
+
+         error = four + five + one + two + three + six + seven + eight + nine;
+        if (studies.getSelectedToggle() == null || student.getSelectedToggle() == null ||
+                aboriginal.getSelectedToggle() == null || tf_province.getValue() == null ||
+                tf_school.getValue() == null || gpa.trim().isEmpty() || numeric == false || gpaformat == false || gpagreater == false) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Input Validation");
+            alert.setHeaderText("Please make sure you have selected the following inputs");
+            alert.setContentText(error);
+
+
+            alert.showAndWait();
+
+        }
+        else {
+
+            setRadioButtonValues();
+            System.out.println("GOOD");
+            VBox vBox = FXMLLoader.load(getClass().getResource("UniFundMeResults.fxml"));
+            VBoxMain.getChildren().setAll(vBox);
+        }
+    }
+
 
     // main controller event methods
     @FXML
     void onDefault(ActionEvent event) throws IOException {
-
-    	System.out.println("Debug: method to initialize result window/scene");
-    	VBox vBox = FXMLLoader.load(getClass().getResource("UniFundMeResults.fxml"));
-    	VBoxMain.getChildren().setAll(vBox);
+        searchType = "default";
+        validationCheck();
+       // String test = studies.getSelectedToggle().toString();
+        //System.out.println(test);
+    	//System.out.println("Debug: method to initialize result window/scene");
     }
     @FXML
-    void onScholar(ActionEvent event) {
-
-        System.out.println("MySQL Query for only Scholarships");
+    void onScholar(ActionEvent event) throws IOException {
+        searchType = "scholar";
+        System.out.println("Debug: method to initialize result Scholarships");
+        VBox vBox = FXMLLoader.load(getClass().getResource("UniFundMeResults.fxml"));
+        VBoxMain.getChildren().setAll(vBox);
     }
     @FXML
-    void onGrants(ActionEvent event) {
-
-        System.out.println("MySQL Query for only Grants");
+    void onGrants(ActionEvent event) throws IOException {
+        searchType = "grant";
+        System.out.println("Debug: method to initialize result Scholarships");
+        VBox vBox = FXMLLoader.load(getClass().getResource("UniFundMeResults.fxml"));
+        VBoxMain.getChildren().setAll(vBox);
     }
     @FXML
-    void onBrusaries(ActionEvent event) {
-
-        System.out.println("MySQL Query for only Brusaries");
-        //int last = tf_province.getSelectionModel().getSelectedIndex();
-       // System.out.println(last);
+    void onBrusaries(ActionEvent event) throws IOException {
+        searchType = "brusary";
+        System.out.println("Debug: method to initialize result Scholarships");
+        VBox vBox = FXMLLoader.load(getClass().getResource("UniFundMeResults.fxml"));
+        VBoxMain.getChildren().setAll(vBox);
     }
 
     @FXML
@@ -155,6 +267,35 @@ public class MainController implements Initializable {
             }
         } catch (Exception ex){
             System.out.println("Failed to open wiki.");
+        }
+    }
+
+    // set the values from radio buttons to values
+    @FXML
+    public void setRadioButtonValues() {
+
+        // full time or part time student radio buttons
+        if(tf_RdFull.isSelected()) {
+            study = "1";
+        }
+        else if(tf_RdPart.isSelected()) {
+            study = "0";
+        }
+
+        // domestic or international radio buttons
+        if(tf_RdDomestic.isSelected()) {
+            locality = "1";
+        }
+        else if(tf_RdInternational.isSelected()) {
+            locality = "0";
+        }
+
+        // aboriginal or not radio buttons
+        if(tf_RdYesAbo.isSelected()) {
+            aboriginality = "1";
+        }
+        else if(tf_RdNoAbo.isSelected()) {
+            aboriginality = "0";
         }
     }
 

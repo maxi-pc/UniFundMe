@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="VBoxOutput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OutputController">
+<VBox fx:id="VBoxOutput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OutputController">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="600.0">
          <menus>
@@ -49,7 +49,7 @@
             </Text>
             <Pane layoutY="152.0" prefHeight="295.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
                <children>
-                  <TableView fx:id="outputTable" prefHeight="317.0" prefWidth="608.0">
+                  <TableView fx:id="outputTable" prefHeight="304.0" prefWidth="608.0">
                      <columns>
                         <TableColumn fx:id="colSource" prefWidth="104.0" text="Source" />
                         <TableColumn fx:id="colType" prefWidth="119.0" text="Type" />
