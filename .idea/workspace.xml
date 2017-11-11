@@ -4,7 +4,6 @@
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MainController.java" afterPath="$PROJECT_DIR$/src/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OutputController.java" afterPath="$PROJECT_DIR$/src/OutputController.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -140,8 +139,8 @@
       <file leaf-file-name="MainController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1848">
-              <caret line="277" column="36" lean-forward="false" selection-start-line="277" selection-start-column="16" selection-end-line="277" selection-end-column="36" />
+            <state relative-caret-position="728">
+              <caret line="228" column="8" lean-forward="false" selection-start-line="228" selection-start-column="8" selection-end-line="228" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,8 +161,8 @@
       <file leaf-file-name="OutputController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/OutputController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1416">
-              <caret line="36" column="82" lean-forward="false" selection-start-line="36" selection-start-column="82" selection-end-line="36" selection-end-column="82" />
+            <state relative-caret-position="459">
+              <caret line="59" column="67" lean-forward="false" selection-start-line="59" selection-start-column="64" selection-end-line="59" selection-end-column="67" />
               <folding>
                 <element signature="method#loadDataDefault#0;class#OutputController#0" expanded="false" />
                 <element signature="method#loadDataMenu#0;class#OutputController#0" expanded="false" />
@@ -817,7 +816,7 @@
       <workItem from="1509153131016" duration="1528000" />
       <workItem from="1509412604313" duration="76000" />
       <workItem from="1509594822895" duration="599000" />
-      <workItem from="1510369431262" duration="23993000" />
+      <workItem from="1510369431262" duration="24607000" />
     </task>
     <task id="LOCAL-00001" summary="No big deal">
       <created>1508716905470</created>
@@ -875,11 +874,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510394432266</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added validation functionality and completed the functions for all search methods.">
+      <created>1510395226417</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1510395226417</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89208000" />
+    <option name="totallyTimeSpent" value="89822000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -1331,8 +1337,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/OutputController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1416">
-          <caret line="36" column="82" lean-forward="false" selection-start-line="36" selection-start-column="82" selection-end-line="36" selection-end-column="82" />
+        <state relative-caret-position="459">
+          <caret line="59" column="67" lean-forward="false" selection-start-line="59" selection-start-column="64" selection-end-line="59" selection-end-column="67" />
           <folding>
             <element signature="method#loadDataDefault#0;class#OutputController#0" expanded="false" />
             <element signature="method#loadDataMenu#0;class#OutputController#0" expanded="false" />
@@ -1357,8 +1363,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1848">
-          <caret line="277" column="36" lean-forward="false" selection-start-line="277" selection-start-column="16" selection-end-line="277" selection-end-column="36" />
+        <state relative-caret-position="728">
+          <caret line="228" column="8" lean-forward="false" selection-start-line="228" selection-start-column="8" selection-end-line="228" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
