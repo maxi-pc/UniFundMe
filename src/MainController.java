@@ -207,6 +207,7 @@ public class MainController implements Initializable {
     @FXML
     void onScholar(ActionEvent event) throws IOException {
         searchType = "scholar";
+        validationCheck();
         System.out.println("Debug: method to initialize result Scholarships");
         VBox vBox = FXMLLoader.load(getClass().getResource("UniFundMeResults.fxml"));
         VBoxMain.getChildren().setAll(vBox);
@@ -214,6 +215,7 @@ public class MainController implements Initializable {
     @FXML
     void onGrants(ActionEvent event) throws IOException {
         searchType = "grant";
+        validationCheck();
         System.out.println("Debug: method to initialize result Scholarships");
         VBox vBox = FXMLLoader.load(getClass().getResource("UniFundMeResults.fxml"));
         VBoxMain.getChildren().setAll(vBox);
@@ -221,6 +223,7 @@ public class MainController implements Initializable {
     @FXML
     void onBrusaries(ActionEvent event) throws IOException {
         searchType = "brusary";
+        validationCheck();
         System.out.println("Debug: method to initialize result Scholarships");
         VBox vBox = FXMLLoader.load(getClass().getResource("UniFundMeResults.fxml"));
         VBoxMain.getChildren().setAll(vBox);

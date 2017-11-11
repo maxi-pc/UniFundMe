@@ -32,7 +32,9 @@ public class OutputController  implements Initializable {
         System.out.println("Debug: Result window/scene done");
         dc = new DbConnection();
 
+        // set connection between main controller objects and the results / output controller
         MainController cont=Context.getInstance().getTabRough();
+        // pass values from main controller to this controller (output controller)
         String searchType = cont.searchType;
         String school = cont.tf_school.getValue();
         String gpa = cont.tf_txtFieldGPA.getText();
@@ -41,6 +43,7 @@ public class OutputController  implements Initializable {
         String aboriginality = cont.aboriginality;
         String sourceType = "";
 
+        // debug printout, checking to see if values are being passed correctly.
         System.out.println(school);
         System.out.println(gpa);
         System.out.println(study);
