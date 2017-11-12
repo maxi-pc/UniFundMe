@@ -1,3 +1,5 @@
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -12,7 +14,8 @@ public class AwardList {
     private final StringProperty source;
     private final StringProperty type;
     private final StringProperty name;
-    private final StringProperty amount;
+    //private final StringProperty amount;
+    private DoubleProperty amount = new SimpleDoubleProperty();
 
     public String getSource() {
         return source.get();
@@ -46,23 +49,24 @@ public class AwardList {
         this.name.set(name);
     }
 
-    public String getAmount() {
+    public Double getAmount() {
         return amount.get();
     }
 
-    public StringProperty amountProperty() {
+    public DoubleProperty amountProperty() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount.set(amount);
     }
 
-    public AwardList(String source, String type, String name, String amount) {
+    public AwardList(String source, String type, String name, Double amount) {
         this.source = new SimpleStringProperty(source);
         this.type = new SimpleStringProperty(type);
         this.name = new SimpleStringProperty(name);
-        this.amount = new SimpleStringProperty(amount);
+        this.amount = new SimpleDoubleProperty(amount);
+        //this.amount = new Number();
 
     }
 

@@ -2,6 +2,7 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.print.PrinterJob;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.collections.FXCollections;
@@ -96,6 +97,8 @@ public class MainController implements Initializable {
 
     @FXML
     public String study, locality, aboriginality;
+
+    public boolean printable = false;
 
     @FXML
     void validationCheck()throws IOException {

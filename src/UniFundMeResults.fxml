@@ -20,6 +20,7 @@
             <Menu mnemonicParsing="false" text="File">
                <items>
                   <MenuItem fx:id="menuPreferences" mnemonicParsing="false" onAction="#onSettings" text="Preferences…" />
+                  <MenuItem fx:id="menuSave" mnemonicParsing="false" onAction="#onSave" text="Save to File" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="menuQuit" mnemonicParsing="false" onAction="#onQuit" text="Quit" />
                </items>

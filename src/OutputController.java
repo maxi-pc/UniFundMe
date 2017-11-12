@@ -1,10 +1,13 @@
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -12,7 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javax.script.Bindings;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,6 +25,12 @@ import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.text.NumberFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 
 public class OutputController  implements Initializable {
@@ -103,7 +112,7 @@ public class OutputController  implements Initializable {
     private TableColumn<AwardList, String> colName;
 
     @FXML
-    private TableColumn<AwardList, String> colAmount;
+    private TableColumn<AwardList, Number> colAmount = new TableColumn<>("Amount");
 
     private ObservableList<AwardList>data;
 
@@ -130,8 +139,37 @@ public class OutputController  implements Initializable {
     }
 
     @FXML
-    void onPrint(ActionEvent event) {
+    MainController cont=Context.getInstance().getTabRough();
+    public boolean printable = cont.printable;
 
+
+    @FXML
+    void onPrint(ActionEvent event) {
+        //MainController cont=Context.getInstance().getTabRough();
+        //boolean printable = cont.printable;
+
+
+      //  if (printable == true) {
+        //    PrinterJob printerJob = PrinterJob.createPrinterJob();
+         //   if(printerJob.showPrintDialog(VBoxOutput.getScene().getWindow()) && printerJob.printPage(outputTable))
+        //        printerJob.endJob();
+         //   System.out.println(printable);
+
+          //  printerJob.showPageSetupDialog(con.getClass())
+                   // Window =
+    //    }
+    //    else {
+            // do nothing
+         //   System.out.println(printable);
+    //    }
+
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null && job.showPrintDialog(VBoxOutput.getScene().getWindow())){
+            boolean success = job.printPage(outputTable);
+            if (success) {
+                job.endJob();
+            }
+        }
     }
 
     @FXML
@@ -142,6 +180,35 @@ public class OutputController  implements Initializable {
     @FXML
     void onSettings(ActionEvent event) {
 
+    }
+
+  // @FXML
+  //  void onSave(ActionEvent event) throws Exception {
+ //       try {
+  //          writeExcel();
+  //      } catch (Exception e) {
+  //          e.printStackTrace();
+  //      }us
+  //  }
+
+    @FXML
+    void onSave(ActionEvent event) throws Exception {
+            FileChooser fileChooser = new FileChooser();
+
+            //Set extension filter
+            FileChooser.ExtensionFilter extFilterCVS =
+                //     new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+                new FileChooser.ExtensionFilter("CVS files (*.cvs)", "*.csv");
+        FileChooser.ExtensionFilter extFilterTXT =
+                new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+            fileChooser.getExtensionFilters().addAll(extFilterCVS, extFilterTXT);
+
+            //Show save file dialog
+            File file = fileChooser.showSaveDialog(VBoxOutput.getScene().getWindow());
+
+            if (file != null) {
+                SaveFile(file);
+            }
     }
 
     @FXML
@@ -161,10 +228,14 @@ public class OutputController  implements Initializable {
             schoolVal = "All Schools";
 
             try {
-                PreparedStatement sql = conn.prepareStatement("SELECT award_source, award_type, school_name, award_amount FROM awards AS A INNER JOIN schools AS S ON A.award_school_id = S.school_id");
+                PreparedStatement sql = conn.prepareStatement("SELECT award_source, award_type, school_name, award_amount FROM awards AS A INNER JOIN schools AS S ON A.award_school_id = S.school_id WHERE award_studies = ? AND award_student_type = ? AND award_aboriginality = ? AND award_req_gpa <= ?");
+                sql.setString(1, study);
+                sql.setString(2, locality);
+                sql.setString(3, aboriginality);
+                sql.setString(4, gpa);
                 ResultSet rs = sql.executeQuery();
                 while (rs.next()) {
-                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("school_name"), rs.getString("award_amount")));
+                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("school_name"), rs.getDouble("award_amount")));
                 }
 
 
@@ -185,6 +256,21 @@ public class OutputController  implements Initializable {
             colName.setCellValueFactory(new PropertyValueFactory<>("name"));
             colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
+            // format the database double number to dollar and two decimal places.
+            colAmount.setCellFactory(tc -> new TableCell<AwardList, Number>() {
+                @Override
+                protected void updateItem(Number amount, boolean empty) {
+                    if (empty) {
+                        setText("");
+                    } else {
+                        setText(String.format("$%.2f", amount.doubleValue()));
+                    }
+                }
+            });
+
+          //  colAmount.setCellValueFactory(cellData ->
+          //          Bindings.format("%.2f", cellData.getValue().getPropertyMyDouble()));
+
             //.setCellFactory(new ColumnFormatter<Levels, Double>(new DecimalFormat("0.0dB")));
 
 
@@ -192,6 +278,7 @@ public class OutputController  implements Initializable {
             outputTable.setItems(data);
 
             System.out.println("Debug: Loading default from database successful");
+            printable = true;
 
         } else {
 
@@ -208,7 +295,7 @@ public class OutputController  implements Initializable {
 
                 ResultSet rs = sql.executeQuery();
                 while (rs.next()) {
-                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("award_name"), rs.getString("award_amount")));
+                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("award_name"), rs.getDouble("award_amount")));
                 }
 
 
@@ -229,13 +316,26 @@ public class OutputController  implements Initializable {
             colName.setCellValueFactory(new PropertyValueFactory<>("name"));
             colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
-            //.setCellFactory(new ColumnFormatter<Levels, Double>(new DecimalFormat("0.0dB")));
+            // format the database double number to dollar and two decimal places.
+            colAmount.setCellFactory(tc -> new TableCell<AwardList, Number>() {
+                        @Override
+                        protected void updateItem(Number amount, boolean empty) {
+                            if (empty) {
+                                setText("");
+                            } else {
+                                setText(String.format("$%.2f", amount.doubleValue()));
+                            }
+                        }
+                    });
+
+            //colAmount.setCellFactory(new ColumnFormatter<Levels, Double>(new DecimalFormat("0.0dB")));
 
 
             outputTable.setItems(null);
             outputTable.setItems(data);
 
             System.out.println("Debug: Loading default from database successful");
+            printable = true;
 
         }
     }
@@ -254,7 +354,7 @@ public class OutputController  implements Initializable {
                 sql.setString(1, sourceType);
                 ResultSet rs = sql.executeQuery();
                 while (rs.next()) {
-                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("award_name"), rs.getString("award_amount")));
+                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("award_name"), rs.getDouble("award_amount")));
                 }
 
 
@@ -275,13 +375,23 @@ public class OutputController  implements Initializable {
             colName.setCellValueFactory(new PropertyValueFactory<>("name"));
             colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
-            //.setCellFactory(new ColumnFormatter<Levels, Double>(new DecimalFormat("0.0dB")));
+            colAmount.setCellFactory(tc -> new TableCell<AwardList, Number>() {
+                @Override
+                protected void updateItem(Number amount, boolean empty) {
+                    if (empty) {
+                        setText("");
+                    } else {
+                        setText(String.format("$%.2f", amount.doubleValue()));
+                    }
+                }
+            });
 
 
             outputTable.setItems(null);
             outputTable.setItems(data);
 
-            System.out.println("Debug: Loading from database successful");
+            System.out.println("Debug: Loading specific from database successful");
+            printable = true;
 
         } else {
 
@@ -299,7 +409,7 @@ public class OutputController  implements Initializable {
                 ResultSet rs = sql.executeQuery();
 
                 while (rs.next()) {
-                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("award_name"), rs.getString("award_amount")));
+                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("award_name"), rs.getDouble("award_amount")));
                 }
 
 
@@ -320,15 +430,77 @@ public class OutputController  implements Initializable {
             colName.setCellValueFactory(new PropertyValueFactory<>("name"));
             colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
+            colAmount.setCellFactory(tc -> new TableCell<AwardList, Number>() {
+                @Override
+                protected void updateItem(Number amount, boolean empty) {
+                    if (empty) {
+                        setText("");
+                    } else {
+                        setText(String.format("$%.2f", amount.doubleValue()));
+                    }
+                }
+            });
+
             //.setCellFactory(new ColumnFormatter<Levels, Double>(new DecimalFormat("0.0dB")));
 
 
             outputTable.setItems(null);
             outputTable.setItems(data);
 
-            System.out.println("Debug: Loading from database successful");
+            System.out.println("Debug: Loading specific from database successful");
+            printable = true;
 
         }
     }
 
+    public void writeExcel() throws Exception {
+
+        Writer writer = null;
+        try {
+            File file = new File("C:\\Awards.csv.");
+            writer = new BufferedWriter(new FileWriter(file));
+            for (AwardList award : data) {
+
+                String text = award.getSource() + "," + award.getType() + "," + award.getName() + "," + award.getAmount() + "\n";
+
+                writer.write(text);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        finally {
+
+            writer.flush();
+            writer.close();
+        }
+    }
+
+    private void SaveFile(File file) throws Exception{
+        Writer writer = null;
+        try {
+          // FileWriter fileWriter;
+          // fileWriter = new FileWriter(file);
+            // fileWriter.write(content);
+
+           writer = new BufferedWriter(new FileWriter(file));
+
+            for (AwardList award : data) {
+
+                String text = award.getSource() + "," + award.getType() + "," + award.getName() + "," + award.getAmount() + "\n";
+
+                writer.write(text);
+                //fileWriter.write(text);
+            }
+
+    //    } catch (IOException ex) {
+     //      Logger.getLogger(OutputController.class.getName()).log(Level.SEVERE, null, ex);
+    //   }
+        } catch (Exception ex) {
+           ex.printStackTrace();
+        }
+        finally {
+        writer.flush();
+        writer.close();
+       }
+    }
 }

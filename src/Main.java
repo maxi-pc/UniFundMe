@@ -3,6 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Main extends Application {
 
@@ -13,10 +14,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Context2.getInstance().setTabRough(this);
         VBox mainVBox = (VBox) FXMLLoader.load(Main.class.getResource("UniFundMe.fxml"));
         primaryStage.setScene(new Scene(mainVBox));
         primaryStage.show();
         primaryStage.setResizable(false);
+      // public Window lol = primaryStage.getOwner();
+       String mainTest = "lol";
     }
 
 
