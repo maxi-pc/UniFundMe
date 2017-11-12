@@ -286,7 +286,7 @@ public class OutputController  implements Initializable {
             try {
                 // ResultSet rs = conn.createStatement().executeQuery("SELECT award_source, award_type, award_name, award_amount FROM awards");
                 //  ResultSet rs = conn.createStatement().executeQuery("SELECT award_source, award_type, award_name, award_amount FROM awards INNER JOIN schools AS S ON awards.award_school_id = S.school_id WHERE S.school_name LIKE \"%schoolVal%\"");
-                PreparedStatement sql = conn.prepareStatement("SELECT award_source, award_type, award_name, award_amount FROM awards AS A INNER JOIN schools AS S ON A.award_school_id = S.school_id WHERE school_name = ? AND award_studies = ? AND award_student_type = ? AND award_aboriginality = ? AND award_req_gpa <= ?;");
+                PreparedStatement sql = conn.prepareStatement("SELECT award_source, award_type, school_name, award_amount FROM awards AS A INNER JOIN schools AS S ON A.award_school_id = S.school_id WHERE school_name = ? AND award_studies = ? AND award_student_type = ? AND award_aboriginality = ? AND award_req_gpa <= ?;");
                 sql.setString(1,schoolVal);
                 sql.setString(2, study);
                 sql.setString(3, locality);
@@ -295,7 +295,7 @@ public class OutputController  implements Initializable {
 
                 ResultSet rs = sql.executeQuery();
                 while (rs.next()) {
-                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("award_name"), rs.getDouble("award_amount")));
+                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("school_name"), rs.getDouble("award_amount")));
                 }
 
 
@@ -350,11 +350,16 @@ public class OutputController  implements Initializable {
             schoolVal = "All Schools";
 
             try {
-                PreparedStatement sql = conn.prepareStatement("SELECT award_source, award_type, award_name, award_amount FROM awards WHERE award_type = ?");
-                sql.setString(1, sourceType);
+                PreparedStatement sql = conn.prepareStatement("SELECT award_source, award_type, school_name, award_amount FROM awards AS A INNER JOIN schools AS S ON A.award_school_id = S.school_id WHERE award_studies = ? AND award_student_type = ? AND award_aboriginality = ? AND award_req_gpa <= ? and award_type = ?");
+                sql.setString(1, study);
+                sql.setString(2, locality);
+                sql.setString(3, aboriginality);
+                sql.setString(4, gpa);
+                sql.setString(5, sourceType);
+
                 ResultSet rs = sql.executeQuery();
                 while (rs.next()) {
-                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("award_name"), rs.getDouble("award_amount")));
+                    data.add(new AwardList(rs.getString("award_source"), rs.getString("award_type"), rs.getString("school_name"), rs.getDouble("award_amount")));
                 }
 
 
@@ -367,9 +372,8 @@ public class OutputController  implements Initializable {
             txtLabelTotal.setText(Integer.toString(total));
             txtLabelSchool.setText(schoolVal);
 
-            //set cell value factory to tableview
-            //NB.PRopertyValue Factory must be the same with the one set in AwardList class.
 
+            //
             colSource.setCellValueFactory(new PropertyValueFactory<>("source"));
             colType.setCellValueFactory(new PropertyValueFactory<>("type"));
             colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -430,6 +434,7 @@ public class OutputController  implements Initializable {
             colName.setCellValueFactory(new PropertyValueFactory<>("name"));
             colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
+            // change format of amount from awards to two decimal and dollar sign.
             colAmount.setCellFactory(tc -> new TableCell<AwardList, Number>() {
                 @Override
                 protected void updateItem(Number amount, boolean empty) {
@@ -476,31 +481,36 @@ public class OutputController  implements Initializable {
     }
 
     private void SaveFile(File file) throws Exception{
-        Writer writer = null;
+     //   Writer writer = null;
+        BufferedWriter writer;
         try {
-          // FileWriter fileWriter;
-          // fileWriter = new FileWriter(file);
-            // fileWriter.write(content);
+            writer = new BufferedWriter(new FileWriter(file));
+            // working writer = new BufferedWriter(new FileWriter(file));
+            //  BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 
-           writer = new BufferedWriter(new FileWriter(file));
-
-            for (AwardList award : data) {
-
-                String text = award.getSource() + "," + award.getType() + "," + award.getName() + "," + award.getAmount() + "\n";
-
-                writer.write(text);
-                //fileWriter.write(text);
+            String tempPath = file.getCanonicalPath().toLowerCase();
+            if (tempPath.endsWith(".txt")) {
+                for (AwardList award : data) {
+                    String text = award.getSource() + " ----- " + award.getType() + " ----- " + award.getName() + " ----- " + award.getAmount() + "\n";
+                    writer.write(text);
+                    writer.newLine();
+                }
+            } else {
+                for (AwardList award : data) {
+                    String text = award.getSource() + "," + award.getType() + "," + award.getName() + "," + award.getAmount() + "\n";
+                    writer.write(text);
+                }
             }
+            writer.flush();
+            writer.close();
 
-    //    } catch (IOException ex) {
-     //      Logger.getLogger(OutputController.class.getName()).log(Level.SEVERE, null, ex);
-    //   }
         } catch (Exception ex) {
-           ex.printStackTrace();
+            ex.printStackTrace();
         }
-        finally {
-        writer.flush();
-        writer.close();
-       }
+    //    finally {
+    //        writer.flush();
+    //        writer.close();
+    //    }
     }
+
 }
