@@ -489,16 +489,20 @@ public class OutputController  implements Initializable {
             //  BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 
             String tempPath = file.getCanonicalPath().toLowerCase();
+            // check if saving file to a text format since it needs a newLine for it to display properly
             if (tempPath.endsWith(".txt")) {
                 for (AwardList award : data) {
                     String text = award.getSource() + " ----- " + award.getType() + " ----- " + award.getName() + " ----- " + award.getAmount() + "\n";
                     writer.write(text);
                     writer.newLine();
+                    writer.newLine();
                 }
+                // do normal saving for cvs file
             } else {
                 for (AwardList award : data) {
                     String text = award.getSource() + "," + award.getType() + "," + award.getName() + "," + award.getAmount() + "\n";
                     writer.write(text);
+              //      writer.newLine();
                 }
             }
             writer.flush();

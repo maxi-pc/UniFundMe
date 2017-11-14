@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="UniFundMe">
+    <output-path>$PROJECT_DIR$/out/artifacts/UniFundMe</output-path>
+    <root id="root">
+      <element id="library" level="project" name="mysql-connector-java-5.0.8-bin" />
+      <element id="archive" name="UniFundMe.jar">
+        <element id="module-output" name="UniFundMe" />
+      </element>
+    </root>
+  </artifact>
+</component>

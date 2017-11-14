@@ -19,8 +19,9 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(mainVBox));
         primaryStage.show();
         primaryStage.setResizable(false);
+        primaryStage.setTitle("UniFundMe");
       // public Window lol = primaryStage.getOwner();
-       String mainTest = "lol";
+     //  String mainTest = "lol";
     }
 
 
